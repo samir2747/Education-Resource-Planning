@@ -1,0 +1,131 @@
+﻿@model InstitudeManagementSystem.Models.Payment
+
+@{
+    ViewData["Title"] = "Make Payment";
+}
+
+<!-- Page Header -->
+<div class="card-header bg-primary text-white text-center">
+    <h1 class="display-4 text-white font-weight-bold">Make Payment</h1>
+    <p class="text-white">Fill out the payment details and submit</p>
+</div>
+
+<div class="d-flex justify-content-center mt-5">
+    <div class="col-md-8">
+        <form asp-action="Make">
+            <div asp-validation-summary="ModelOnly" class="text-danger mb-4"></div>
+
+            <!-- STUDENT INFORMATION SECTION -->
+            <h5 class="text-primary font-weight-bold mb-3 text-uppercase">Student Information</h5>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="StudentId" class="control-label fw-bold">Student ID</label>
+                        <input asp-for="StudentId" class="form-control" readonly />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="StudentName" class="control-label fw-bold">Student Name</label>
+                        <input asp-for="StudentName" class="form-control" readonly />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="MobileNo" class="control-label fw-bold">Mobile No.</label>
+                        <input asp-for="MobileNo" class="form-control" readonly />
+                    </div>
+                    
+                </div>
+
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="Gmail" class="control-label fw-bold">Gmail</label>
+                        <input asp-for="Gmail" class="form-control" readonly />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="ParentName" class="control-label fw-bold">Parent Name</label>
+                        <input asp-for="ParentName" class="form-control" readonly />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="CourseName" class="control-label fw-bold">Course Name</label>
+                        <input asp-for="CourseName" class="form-control" readonly />
+                    </div>
+                </div>
+            </div>
+
+            <!-- PAYMENT DETAILS SECTION -->
+            <h5 class="text-primary font-weight-bold mt-5 mb-3 text-uppercase">Payment Details</h5>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="ReceiptNo" class="control-label fw-bold">Receipt No.</label>
+                        <input asp-for="ReceiptNo" class="form-control" readonly value="@Model.ReceiptNo" />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="ReceiptDate" class="control-label fw-bold">Receipt Date</label>
+                        <input asp-for="ReceiptDate" class="form-control" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" readonly />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="FeesStatus" class="control-label fw-bold">Fees Status</label>
+                        <input asp-for="FeesStatus" class="form-control" readonly />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="ReceivedAmount" class="control-label fw-bold">Received Amount</label>
+                        <input asp-for="ReceivedAmount" class="form-control" placeholder="Amount Received" />
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    
+                    <div class="form-group mb-3">
+                        <label asp-for="ReceivedMode" class="control-label fw-bold">Received Mode</label>
+                        <input asp-for="ReceivedMode" class="form-control" placeholder="Payment Mode (e.g., Cash, Card)" />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="TransactionStatus" class="control-label fw-bold">Transaction Status</label>
+                        <input asp-for="TransactionStatus" class="form-control" placeholder="Transaction Status" />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="TransactionNumber" class="control-label fw-bold">Transaction Number</label>
+                        <input asp-for="TransactionNumber" class="form-control" placeholder="Transaction Number" />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="TransactionDate" class="control-label fw-bold">Transaction Date</label>
+                        <input asp-for="TransactionDate" class="form-control" type="date" value="@DateTime.Now.ToString("yyyy-MM-dd")" readonly />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Additional Details Section -->
+            <h5 class="text-primary font-weight-bold mt-4 mb-3 text-uppercase">Additional Details</h5>
+            <div class="row">
+                <div class="col-md-6">
+                    
+                    <div class="form-group mb-3">
+                        <label asp-for="ReceivedBy" class="control-label fw-bold">Received By</label>
+                        <input asp-for="ReceivedBy" class="form-control" placeholder="Received By" />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="TermCondition" class="control-label fw-bold">Term Condition</label>
+                        <input asp-for="TermCondition" class="form-control" placeholder="Terms & Conditions" />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    
+                    <div class="form-group mb-3">
+                        <label asp-for="ReceiptRemark" class="control-label fw-bold">Receipt Remark</label>
+                        <input asp-for="ReceiptRemark" class="form-control" placeholder="Receipt Remarks (optional)" />
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="Narration" class="control-label fw-bold">Narration</label>
+                        <input asp-for="Narration" class="form-control" placeholder="Narration (optional)" />
+                    </div>
+                   
+                </div>
+            </div>
+
+            <!-- Button -->
+            <div class="form-group text-center mt-4">
+                <button type="submit" class="btn btn-success">Submit</button>
+                <a asp-action="Click" asp-controller="Payment" class="btn btn-secondary">Back</a>
+            </div>
+        </form>
+    </div>
+</div>

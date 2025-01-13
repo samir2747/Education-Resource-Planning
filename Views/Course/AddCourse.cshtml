@@ -1,0 +1,179 @@
+﻿@model InstitudeManagementSystem.Models.Course
+
+@{
+    ViewData["Title"] = "Add Course";
+}
+
+<!-- Page Header -->
+<div class="card-header bg-primary text-white text-center">
+    <h1 class="display-4 text-white" style="font-weight: 650;">Add Course</h1>
+    <p class="text-white fw-bold">Fill out the course details and submit</p>
+</div>
+
+<div class="d-flex justify-content-center mt-5">
+    <div class="col-md-8">
+        <form asp-action="AddCourse" method="post">
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger mb-4"></div>
+
+            <!-- COURSE DETAILS SECTION -->
+            <h5 class="text-primary font-weight-bold mb-3 text-uppercase">Course Details</h5>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="Name" class="control-label fw-bold">Course Name</label>
+                        <input asp-for="Name" class="form-control border-info mb-2" placeholder="Enter Course Name" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="Duration" class="control-label fw-bold">Duration</label>
+                        <input asp-for="Duration" class="form-control border-info mb-2" placeholder="Enter Duration" />
+                        <span asp-validation-for="Duration" class="text-danger"></span>
+                    </div>
+                   
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="CourseFees" class="control-label fw-bold">Course Fees</label>
+                        <input asp-for="CourseFees" class="form-control border-info mb-2" placeholder="Enter Course Fees" />
+                        <span asp-validation-for="CourseFees" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="CourseFormat" class="control-label fw-bold">Course Format</label>
+                        <input asp-for="CourseFormat" class="form-control border-info mb-2" placeholder="Enter Course Format" />
+                        <span asp-validation-for="CourseFormat" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Front-End Languages Section -->
+            <h5 class="text-success text-uppercase fw-bold mt-4 mb-3">Select Front-End Languages:</h5>
+            <div class="form-group">
+                <div class="d-flex flex-wrap">
+                    <div class="form-check me-3">
+                        <input type="checkbox" asp-for="FrontEnd" value="HTML" class="form-check-input" />
+                        <label class="form-check-label">HTML</label>
+                    </div>
+                    <div class="form-check me-3">
+                        <input type="checkbox" asp-for="FrontEnd" value="CSS" class="form-check-input" />
+                        <label class="form-check-label">CSS</label>
+                    </div>
+                    <div class="form-check me-3">
+                        <input type="checkbox" asp-for="FrontEnd" value="BOOTSTRAP" class="form-check-input" />
+                        <label class="form-check-label">Bootstrap</label>
+                    </div>
+                    <div class="form-check me-3">
+                        <input type="checkbox" asp-for="FrontEnd" value="JavaScript" class="form-check-input" />
+                        <label class="form-check-label">JavaScript</label>
+                    </div>
+                    <div class="form-check me-3">
+                        <input type="checkbox" asp-for="FrontEnd" value="ReactJs" class="form-check-input" />
+                        <label class="form-check-label">ReactJs</label>
+                    </div>
+                    <div class="form-check me-3">
+                        <input type="checkbox" asp-for="FrontEnd" value="ANGULAR" class="form-check-input" />
+                        <label class="form-check-label">Angular</label>
+                    </div>
+                    <div class="form-check me-3">
+                        <input type="checkbox" asp-for="FrontEnd" value="jQuery" class="form-check-input" />
+                        <label class="form-check-label">jQuery</label>
+                    </div>
+                    <div class="form-check me-3">
+                        <input type="checkbox" asp-for="FrontEnd" value="Next.js" class="form-check-input" />
+                        <label class="form-check-label">Next.js</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Back-End Languages Section -->
+            <h5 class="text-success text-uppercase fw-bold mt-4 mb-3">Select Back-End Languages:</h5>
+            <div class="form-group">
+                <div class="d-flex flex-wrap">
+                    <div class="form-check me-3">
+                        <input type="checkbox" asp-for="BackEnd" value="C#" class="form-check-input" />
+                        <label class="form-check-label">C#</label>
+                    </div>
+                    <div class="form-check me-3">
+                        <input type="checkbox" asp-for="BackEnd" value="C" class="form-check-input" />
+                        <label class="form-check-label">C</label>
+                    </div>
+                    <div class="form-check me-3">
+                        <input type="checkbox" asp-for="BackEnd" value="C++" class="form-check-input" />
+                        <label class="form-check-label">C++</label>
+                    </div>
+                    <div class="form-check me-3">
+                        <input type="checkbox" asp-for="BackEnd" value="ASP .NET CORE" class="form-check-input" />
+                        <label class="form-check-label">ASP .NET CORE</label>
+                    </div>
+                    <div class="form-check me-3">
+                        <input type="checkbox" asp-for="BackEnd" value="Django" class="form-check-input" />
+                        <label class="form-check-label">Django</label>
+                    </div>
+                    <div class="form-check me-3">
+                        <input type="checkbox" asp-for="BackEnd" value="Node.js" class="form-check-input" />
+                        <label class="form-check-label">Node.js</label>
+                    </div>
+                    <div class="form-check me-3">
+                        <input type="checkbox" asp-for="BackEnd" value="Java" class="form-check-input" />
+                        <label class="form-check-label">Java</label>
+                    </div>
+                    <div class="form-check me-3">
+                        <input type="checkbox" asp-for="BackEnd" value="Python" class="form-check-input" />
+                        <label class="form-check-label">Python</label>
+                    </div>
+                    <div class="form-check me-3">
+                        <input type="checkbox" asp-for="BackEnd" value="Ruby" class="form-check-input" />
+                        <label class="form-check-label">Ruby</label>
+                    </div>
+                    <div class="form-check me-3">
+                        <input type="checkbox" asp-for="BackEnd" value="PHP" class="form-check-input" />
+                        <label class="form-check-label">PHP</label>
+                    </div>
+                    <div class="form-check me-3">
+                        <input type="checkbox" asp-for="BackEnd" value="Go" class="form-check-input" />
+                        <label class="form-check-label">Go</label>
+                    </div>
+                    <div class="form-check me-3">
+                        <input type="checkbox" asp-for="BackEnd" value="Spring Boot" class="form-check-input" />
+                        <label class="form-check-label">Spring Boot</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Database Languages Section -->
+            <h5 class="text-success text-uppercase fw-bold mt-4 mb-3">Select Database Languages:</h5>
+            <div class="form-group">
+                <div class="d-flex flex-wrap">
+                    <div class="form-check me-3">
+                        <input type="checkbox" asp-for="DataBaseLanguage" value="Mysql" class="form-check-input" />
+                        <label class="form-check-label">MySQL</label>
+                    </div>
+                    <div class="form-check me-3">
+                        <input type="checkbox" asp-for="DataBaseLanguage" value="Sql" class="form-check-input" />
+                        <label class="form-check-label">SQL</label>
+                    </div>
+                    <div class="form-check me-3">
+                        <input type="checkbox" asp-for="DataBaseLanguage" value="Mongodb" class="form-check-input" />
+                        <label class="form-check-label">MongoDB</label>
+                    </div>
+                    <div class="form-check me-3">
+                        <input type="checkbox" asp-for="DataBaseLanguage" value="Oracle" class="form-check-input" />
+                        <label class="form-check-label">Oracle</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Description Section -->
+            <div class="form-group mb-3 mt-3">
+                <label asp-for="Description" class="control-label fw-bold ">Description</label>
+                <textarea asp-for="Description" class="form-control border-info" placeholder="Enter Course Description"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-group text-center mt-4">
+                <input type="submit" value="Submit" class="btn btn-success" />
+                <a asp-action="CourseTable" class="btn btn-secondary">Back to List</a>
+            </div>
+        </form>
+    </div>
+</div>

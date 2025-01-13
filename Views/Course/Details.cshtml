@@ -1,0 +1,59 @@
+﻿@model InstitudeManagementSystem.Models.Course
+
+@{
+    ViewData["Title"] = "Course Details";
+}
+
+<div class="card-header bg-success text-white text-center">
+    <h1 class="display-4 text-white" style="font-weight: 650;">COURSE DETAILS</h1>
+    <p class="text-white fw-bold">View and Confirm Your Course Information</p>
+</div>
+
+<div class="d-flex justify-content-center mt-4">
+    <div class="col-md-8">
+        <h5 class="text-success font-weight-bold mb-3 text-uppercase">Course Information</h5>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label fw-bold">Course Name</label>
+                    <p class="form-control-static">@Model.Name</p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label fw-bold">Front-End</label>
+                    <p class="form-control-static">@Model.FrontEnd</p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label fw-bold">Back-End</label>
+                    <p class="form-control-static">@Model.BackEnd</p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label fw-bold">Database Language</label>
+                    <p class="form-control-static">@Model.DataBaseLanguage</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label fw-bold">Duration</label>
+                    <p class="form-control-static">@Model.Duration</p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label fw-bold">Course Fees</label>
+                    <p class="form-control-static">@Model.CourseFees</p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label fw-bold">Course Format</label>
+                    <p class="form-control-static">@Model.CourseFormat</p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label fw-bold">Course Description</label>
+                    <p class="form-control-static">@Model.Description</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group text-center mt-4">
+            <a asp-action="Edit" asp-route-id="@Model?.Cid" class="btn btn-warning">Edit</a>
+            <a asp-action="CourseTable" class="btn btn-secondary">Back</a>
+        </div>
+    </div>
+</div>

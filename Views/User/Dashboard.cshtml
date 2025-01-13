@@ -1,0 +1,120 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<nav class="navbar navbar-light">
+    <div class="container">
+        <a class="navbar-brand"><img src="~/Images/Picsart_24-12-07_18-34-26-772.png" style="width:80px;" /></a>
+        <h1 style="color:#111;">INSTITUTE MANAGEMENT SYSTEM</h1>
+        <form class="d-flex">
+            <div class="dropdown">
+                <button class="btn dropdown-toggle text-uppercase" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-solid fa-user"></i> @ViewBag.mysession
+                </button>
+                <ul class="dropdown-menu " aria-labelledby="dropdownMenuButton2">
+                    <li><a class="dropdown-item active" href="#">About</a></li>
+                    <li><a class="dropdown-item" href="#">Terms and condition</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a asp-controller="Home" asp-action="Logout" class="text-decoration-none text-danger d-flex text-center justify-content-center">LOGOUT</a></li>
+                </ul>
+            </div>
+          
+        </form>
+    </div>
+</nav>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+           <section class="mt-4 gap-4 d-flex justify-content-center">
+                <a asp-action="Table" class="btn btn-primary">Inquiry</a>
+                <a asp-controller="Admin" asp-action="Admission" class="btn btn-primary">Admission</a>
+                <a asp-action="Click" asp-controller="Payment" class="btn btn-primary">Payment</a>
+                <a asp-action="Payment" asp-controller="Payment" class="btn btn-primary">Transaction</a>
+                <a asp-action="Table" class="btn btn-primary">Balance</a>
+                <a asp-action="CourseTable" asp-controller="Course" class="btn btn-primary">Courses</a>
+                <a asp-action="Employee" asp-controller="Employee" class="btn btn-primary">Employees</a>
+                <a asp-action="" class="btn btn-primary">Notes</a>
+                <a asp-action="Table" class="btn btn-primary">Contact</a>
+                <a asp-action="Table" class="btn btn-primary">About</a>
+                <a asp-action="Table" class="btn btn-primary">Extra</a>
+           </section>
+           
+
+        </div>
+        </div>
+    </div>
+
+
+    <section>
+        <!-- Main Content -->
+        <div class="grid-container">
+            <div class="grid-item">
+                <h3>
+                    Total Enquiries
+                    <span class="value">@ViewData["TotalInquiry"]</span>
+                </h3>
+            </div>
+            <div class="grid-item">
+                <h3>
+                    Total Admissions
+                    <span class="value">@ViewData["TotalAdd"]</span>
+                </h3>
+            </div>
+            <div class="grid-item">
+                <h3>
+                    Total Collection
+                    <span class="value">900,000</span>
+                </h3>
+            </div>
+            <div class="grid-item">
+                <h3>
+                    Total Billing
+                    <span class="value">1,200,000</span>
+                </h3>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        /* Main Content Section */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2 columns */
+            gap: 20px; /* Spacing between cards */
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 1200px;
+        }
+
+        .grid-item {
+            background-color: #f3f4f6; /* Neutral light gray background */
+            border: 1px solid #d1d5db; /* Soft gray border */
+            padding: 10px; /* Compact padding */
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+            border-radius: 6px; /* Slightly rounded corners */
+            display: flex;
+            flex-direction: column; /* Stack the heading and value vertically */
+            justify-content: center; /* Vertically center the content */
+            align-items: center; /* Horizontally center the content */
+            height: 80px; /* Fixed height for uniformity */
+            padding: 0 15px; /* Horizontal padding */
+        }
+
+            .grid-item h3 {
+                font-size: 16px; /* Smaller font for headings */
+                color: #4b5563; /* Neutral gray for headings */
+                margin: 0; /* Remove margin for inline alignment */
+                font-weight: normal; /* Regular font weight */
+            }
+
+            .grid-item .value {
+                font-size: 18px; /* Compact value size */
+                font-weight: bold;
+                color: #1f2937; /* Dark gray for values */
+                margin: 5px 0 0 0; /* Margin on top for spacing between heading and value */
+            }
+    </style>
+
+
+

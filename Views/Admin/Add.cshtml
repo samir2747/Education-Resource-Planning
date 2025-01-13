@@ -1,0 +1,561 @@
+﻿@model InstitudeManagementSystem.Models.Addmission
+
+@{
+    ViewData["Title"] = "Add";
+}
+
+
+<div class="container-fluid my-4">
+   
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow-sm">
+                <div class="card-header bg-primary text-white text-center">
+                    <h1 class="py-3">Add Admission</h1>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Add" method="post">
+                        <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+                        <!-- Personal Details Section -->
+                        <h5 class="text-primary mb-3 mt-3">Personal Details</h5>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Name" class="form-label fw-bold">Full Name</label>
+                                <input asp-for="Name" class="form-control" placeholder="Enter full name" />
+                                <span asp-validation-for="Name" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Gender" class="form-label fw-bold">Gender</label>
+                                <select asp-for="Gender" class="form-select">
+                                    <option value="">-- Select Gender --</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                                <span asp-validation-for="Gender" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Dob" class="form-label fw-bold">Date of Birth</label>
+                                <input asp-for="Dob" class="form-control" type="date" placeholder="Select date of birth" />
+                                <span asp-validation-for="Dob" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="ContactNo" class="form-label fw-bold">Contact No</label>
+                                <input asp-for="ContactNo" class="form-control" placeholder="Enter contact number" />
+                                <span asp-validation-for="ContactNo" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Email" class="form-label fw-bold">Email</label>
+                                <input asp-for="Email" type="email" class="form-control" placeholder="Enter email address" />
+                                <span asp-validation-for="Email" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="ParentName" class="form-label fw-bold">Parent Name</label>
+                                <input asp-for="ParentName" class="form-control" placeholder="Enter parent's name" />
+                                <span asp-validation-for="ParentName" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="ParentContactNo" class="form-label fw-bold">Parent Contact No</label>
+                                <input asp-for="ParentContactNo" class="form-control" placeholder="Enter parent's contact number" />
+                                <span asp-validation-for="ParentContactNo" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="PermanentAddress" class="form-label fw-bold">Permanent Address</label>
+                                <input asp-for="PermanentAddress" class="form-control" placeholder="Enter permanent address" />
+                                <span asp-validation-for="PermanentAddress" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="CurrentAddress" class="form-label fw-bold">Current Address</label>
+                                <input asp-for="CurrentAddress" class="form-control" placeholder="Enter current address" />
+                                <span asp-validation-for="CurrentAddress" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="City" class="form-label fw-bold">City</label>
+                                <input asp-for="City" class="form-control" placeholder="Enter city name" />
+                                <span asp-validation-for="City" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <!-- Qualification Section -->
+                        <h5 class="text-primary mb-3 mt-5">Qualification</h5>
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Qualification" class="form-label fw-bold">Qualification</label>
+                                <select asp-for="Qualification" class="form-control">
+                                    <option value="">--Select Qualification--</option>
+                                    <option value="HighSchool">High School</option>
+                                    <option value="BSc">B.Sc. (Bachelor of Science)</option>
+                                    <option value="BA">B.A. (Bachelor of Arts)</option>
+                                    <option value="BCom">B.Com (Bachelor of Commerce)</option>
+                                    <option value="BCA">BCA (Bachelor of Computer Applications)</option>
+                                    <option value="MSc">M.Sc. (Master of Science)</option>
+                                    <option value="MA">M.A. (Master of Arts)</option>
+                                    <option value="MCom">M.Com (Master of Commerce)</option>
+                                    <option value="MCA">MCA (Master of Computer Applications)</option>
+                                    <option value="PhD">Ph.D. (Doctor of Philosophy)</option>
+                                    <option value="Diploma">Diploma</option>
+                                </select>
+                                <span asp-validation-for="Qualification" class="text-danger"></span>
+                            </div>
+
+
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="PreviousSchoolClg" class="form-label fw-bold">Previous School/College</label>
+                                <input asp-for="PreviousSchoolClg" class="form-control" placeholder="Enter previous school/college" />
+                                <span asp-validation-for="PreviousSchoolClg" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Marks" class="form-label fw-bold">Marks</label>
+                                <input asp-for="Marks" class="form-control" placeholder="Enter obtained marks" />
+                                <span asp-validation-for="Marks" class="text-danger"></span>
+                            </div>
+
+                            @* <div class="col-md-4 mb-3">
+                                <label asp-for="Course" class="form-label fw-bold">Course</label>
+                                <select asp-for="Course" class="form-select" asp-items="ViewBag.Courses">
+                                    <option value="">--Select Course--</option>
+                                </select>
+                                <span asp-validation-for="Course" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-2 mb-3">
+                                <label class="form-label fw-bold">Select</label>
+                                <button class="btn btn-info">Select</button>
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <h6 class="text-success text-uppercase fw-bold">Front-End Languages:</h6>
+                                
+                                <input type="checkbox" asp-for="FrontEnd" value="HTML" />
+                                <label class="form-label fw-bold">HTML</label><br />
+                                
+                                <input type="checkbox" asp-for="FrontEnd" value="CSS" />
+                                <label class="form-label fw-bold">CSS</label><br />
+                                
+                                <input type="checkbox" asp-for="FrontEnd" value="BOOTSTRAP" />
+                                <label class="form-label fw-bold">BOOTSTRAP</label><br />
+                                
+                                <input type="checkbox" asp-for="FrontEnd" value="JAVASCRIPT" />
+                                <label class="form-label fw-bold">JAVASCRIPT</label>
+                                
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <h6 class="text-success text-uppercase fw-bold">Back-End Languages:</h6>
+
+                                <input type="checkbox" asp-for="BackEnd" value="ASP .NET CORE" />
+                                <label class="form-label fw-bold">ASP .NET CORE</label><br />
+
+                                <input type="checkbox" asp-for="BackEnd" value="C#" />
+                                <label class="form-label fw-bold">C#</label><br />
+
+                                <input type="checkbox" asp-for="BackEnd" value="JAVA" />
+                                <label class="form-label fw-bold">JAVA</label><br />
+
+                                <input type="checkbox" asp-for="BackEnd" value="PYTHON" />
+                                <label class="form-label fw-bold">PYTHON</label>
+
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <h6 class="text-success text-uppercase fw-bold">Data-Base Languages:</h6>
+
+                                <input type="checkbox" asp-for="DataBaselanguage" value="MySQL" />
+                                <label class="form-label fw-bold">MySQL</label><br />
+
+                                <input type="checkbox" asp-for="DataBaselanguage" value="SQL" />
+                                <label class="form-label fw-bold">SQL</label><br />
+
+                                <input type="checkbox" asp-for="DataBaselanguage" value="MongoDB" />
+                                <label class="form-label fw-bold">MongoDB</label><br />
+
+                                <input type="checkbox" asp-for="DataBaselanguage" value="Oracle" />
+                                <label class="form-label fw-bold">Oracle</label>
+
+                            </div> *@
+
+                            <div class="col-md-4 mb-3">
+                                <label asp-for="Course" class="form-label fw-bold">Course</label>
+                                <select asp-for="Course" class="form-select" asp-items="ViewBag.Courses">
+                                    <option value="">--Select Course--</option>
+                                </select>
+                                <span asp-validation-for="Course" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-2 mb-3">
+                                <label class="form-label fw-bold">Select</label>
+                                <button class="btn btn-info" type="button" onclick="toggleFields()">Select</button>
+                            </div>
+
+                            <div class="col-md-4 mb-3" id="frontEndFields" style="display: none;">
+                                <h6 class="text-success text-uppercase fw-bold">Front-End Languages:</h6>
+                                <input type="checkbox" asp-for="FrontEnd" value="HTML" />
+                                <label class="form-label fw-bold">HTML</label><br />
+                                <input type="checkbox" asp-for="FrontEnd" value="CSS" />
+                                <label class="form-label fw-bold">CSS</label><br />
+                                <input type="checkbox" asp-for="FrontEnd" value="BOOTSTRAP" />
+                                <label class="form-label fw-bold">BOOTSTRAP</label><br />
+                                <input type="checkbox" asp-for="FrontEnd" value="JAVASCRIPT" />
+                                <label class="form-label fw-bold">JAVASCRIPT</label>
+                            </div>
+
+                            <div class="col-md-4 mb-3" id="backEndFields" style="display: none;">
+                                <h6 class="text-success text-uppercase fw-bold">Back-End Languages:</h6>
+                                <input type="checkbox" asp-for="BackEnd" value="ASP .NET CORE" />
+                                <label class="form-label fw-bold">ASP .NET CORE</label><br />
+                                <input type="checkbox" asp-for="BackEnd" value="C#" />
+                                <label class="form-label fw-bold">C#</label><br />
+                                <input type="checkbox" asp-for="BackEnd" value="JAVA" />
+                                <label class="form-label fw-bold">JAVA</label><br />
+                                <input type="checkbox" asp-for="BackEnd" value="PYTHON" />
+                                <label class="form-label fw-bold">PYTHON</label>
+                            </div>
+
+                            <div class="col-md-4 mb-3" id="dataBaseFields" style="display: none;">
+                                <h6 class="text-success text-uppercase fw-bold">Data-Base Languages:</h6>
+                                <input type="checkbox" asp-for="DataBaselanguage" value="MySQL" />
+                                <label class="form-label fw-bold">MySQL</label><br />
+                                <input type="checkbox" asp-for="DataBaselanguage" value="SQL" />
+                                <label class="form-label fw-bold">SQL</label><br />
+                                <input type="checkbox" asp-for="DataBaselanguage" value="MongoDB" />
+                                <label class="form-label fw-bold">MongoDB</label><br />
+                                <input type="checkbox" asp-for="DataBaselanguage" value="Oracle" />
+                                <label class="form-label fw-bold">Oracle</label>
+                            </div>
+
+                            
+
+
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="AddmissionDate" class="form-label fw-bold">Admission Date</label>
+                                <input asp-for="AddmissionDate" type="date" class="form-control"
+                                       value="@DateTime.Now.ToString("yyyy-MM-dd")" readonly/>
+                                <span asp-validation-for="AddmissionDate" class="text-danger"></span>
+                            </div>
+
+                        </div>
+
+                        <!-- Payment Details Section -->
+                        <h5 class="text-primary mb-3 mt-5">Payment Details</h5>
+                        
+
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="RegistrationFees" class="form-label fw-bold">Registration Fees</label>
+                                <input asp-for="RegistrationFees" class="form-control"  value="1000" readonly/>
+                                <span asp-validation-for="RegistrationFees" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="PaymentMode" class="form-label fw-bold">Payment Mode</label>
+                                <select asp-for="PaymentMode" class="form-select" id="PaymentMode">
+                                    <option value="">Select Payment Mode</option>
+                                    <option value="Online">Online</option>
+                                    <option value="Cash">Cash</option>
+                                </select>
+                                <span asp-validation-for="PaymentMode" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-6 mb-3" id="TransactionIdField" style="display:none;">
+                                <label asp-for="TransactionId" class="form-label fw-bold">Transaction ID</label>
+                                <input asp-for="TransactionId" class="form-control" placeholder="Enter transaction ID" />
+                                <span asp-validation-for="TransactionId" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="CourseFees" class="form-label fw-bold">Course Fees</label>
+                                <input asp-for="CourseFees" class="form-control" placeholder="Enter course fees" id="CourseFees" />
+                                <span asp-validation-for="CourseFees" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Discount" class="form-label fw-bold">Discount%</label>
+                                <input asp-for="Discount" class="form-control" placeholder="Enter Discount" id="Discount" />
+                                <span asp-validation-for="Discount" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="DiscountedFees" class="form-label fw-bold">Discounted Course Fees</label>
+                                <input asp-for="DiscountedFees" class="form-control" id="DiscountedFees" readonly />
+                                <span asp-validation-for="DiscountedFees" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="DiscountRemark" class="form-label fw-bold">Remark For Discount</label>
+                                <input asp-for="DiscountRemark" class="form-control" placeholder="Why did you give a discount?" />
+                                <span asp-validation-for="DiscountRemark" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="TakenBy" class="form-label fw-bold">Taken By</label>
+                                <input asp-for="TakenBy" class="form-control" placeholder="Enter name of the person who took admission" />
+                                <span asp-validation-for="TakenBy" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label asp-for="Installment" class="form-label fw-bold">Installment</label>
+                                <select asp-for="Installment" class="form-select" id="Installment">
+                                    <option value="">Select Installment</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                </select>
+                                <span asp-validation-for="Installment" class="text-danger"></span>
+                            </div>
+
+                            <div class="col-md-12" id="InstallmentFields"></div>
+                        </div>
+
+                        <input asp-for="InquiryId" type="hidden" />
+
+                        <div class="col-12 text-center mt-4">
+                            <button type="submit" class="btn btn-success px-3">SUBMIT</button>
+                            <a asp-action="Admission" class="btn btn-secondary px-3">BACK TO PAGE</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+ @* style="box-shadow:1px 2px 25px 0px rgba(0,0,0,0.75);-webkit-box-shadow:1px 2px 25px 0px rgba(0,0,0,0.75);-moz-box-shadow:1px 2px 25px 0px rgba(0,0,0,0.75);" *@
+
+
+
+@section Scripts {
+    <script>
+        // Function to calculate the discounted fees
+        // Function to calculate the discounted fees
+        // function calculateDiscountedFees() {
+        //     var courseFees = parseFloat(document.getElementById("CourseFees").value) || 0;
+        //     var discount = parseFloat(document.getElementById("Discount").value) || 0;
+
+        //     // Only update Discounted Fees if discount is provided
+        //     if (discount > 0) {
+        //         var discountedFees = (courseFees - (courseFees * discount / 100)).toFixed(2);
+        //         document.getElementById("DiscountedFees").value = discountedFees;
+        //     } else {
+        //         document.getElementById("DiscountedFees").value = ''; // Clear if no discount is entered
+        //     }
+        // }
+
+        // // Event listeners for Course Fees and Discount fields
+        // document.getElementById("CourseFees").addEventListener("input", calculateDiscountedFees);
+        // document.getElementById("Discount").addEventListener("input", calculateDiscountedFees);
+
+   
+
+        function toggleFields() {
+            // Toggle the visibility of the fields when the "Select" button is clicked
+            var frontEnd = document.getElementById('frontEndFields');
+            var backEnd = document.getElementById('backEndFields');
+            var dataBase = document.getElementById('dataBaseFields');
+
+            // Toggle the display of each section
+            frontEnd.style.display = (frontEnd.style.display === 'none' || frontEnd.style.display === '') ? 'block' : 'none';
+            backEnd.style.display = (backEnd.style.display === 'none' || backEnd.style.display === '') ? 'block' : 'none';
+            dataBase.style.display = (dataBase.style.display === 'none' || dataBase.style.display === '') ? 'block' : 'none';
+        }
+
+
+
+        // Function to calculate the discounted fees
+        function calculateDiscountedFees() {
+            var courseFees = (parseFloat(document.getElementById("CourseFees").value))-1000 || 0;
+            var discount = parseFloat(document.getElementById("Discount").value) || 0;
+            var discountedFees = courseFees && discount >= 0 ? (courseFees - (courseFees * discount / 100)).toFixed(2) : '';
+            document.getElementById("DiscountedFees").value = discountedFees;
+        }
+
+        // Event listeners for Course Fees and Discount fields
+        ["CourseFees", "Discount"].forEach(id => document.getElementById(id).addEventListener("input", calculateDiscountedFees));
+
+
+
+
+
+        // Show/Hide Transaction ID field based on Payment Mode selection
+        document.getElementById("PaymentMode").addEventListener("change", function () {
+            const transactionField = document.getElementById("TransactionIdField");
+            transactionField.style.display = this.value === "Online" ? "block" : "none";
+        });
+
+
+
+        document.getElementById("Installment").addEventListener("change", function () {
+            const installmentFields = document.getElementById("InstallmentFields");
+            const discountedFees = parseFloat(document.getElementById("DiscountedFees").value) || 0; // Get discounted fees
+            const count = parseInt(this.value, 10) || 0; // Get the number of installments
+
+            installmentFields.innerHTML = ""; // Clear previous fields
+
+            if (count > 0) {
+                const installmentAmount = Math.floor((discountedFees / count) + 1000); // Base amount per installment
+                const remainder = (discountedFees + (count * 1000)) % count; // Calculate remainder for distribution
+
+                let table = `
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Installment</th>
+                                <th>Date</th>
+                                <th>Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>`;
+
+                // if (count >= 1) {
+                //     const amount = installmentAmount + remainder;
+                //     table +=
+                //         <tr>
+                //         <td class="fw-bold" > First Installment < /td>
+                //             < td > <input type="date" id = "FirstDate" name = "FirstDate" class="form-control" /> </td>
+                //                 < td > <input type="number" name = "FirstInsta" class="form-control" value = "${amount}" readonly /> </td>
+                //                     < /tr>;
+                // }
+
+                if (count >= 1) {
+                    let amount;
+                    if (count === 1) {
+                        amount = discountedFees; // Don't add the 1000 if only one installment
+                    } else {
+                        amount = installmentAmount + remainder; // Add the 1000 if more than one installment
+                    }
+
+                    table += `
+                <tr>
+                    <td class="fw-bold">First Installment</td>
+                    <td><input type="date" id="FirstDate" name="FirstDate" class="form-control" /></td>
+                    <td><input type="number" name="FirstInsta" class="form-control" value="${amount}" readonly /></td>
+                </tr>`;
+                }
+
+
+                if (count >= 2) {
+                    const amount = installmentAmount;
+                    table += `
+                        <tr>
+                            <td class="fw-bold">Second Installment</td>
+                            <td><input type="date" id="SecondDate" name="SecondDate" class="form-control" readonly /></td>
+                            <td><input type="number" name="SecondInsta" class="form-control" value="${amount}" readonly /></td>
+                        </tr>`;
+                }
+
+                if (count >= 3) {
+                    const amount = installmentAmount;
+                    table += `
+                        <tr>
+                            <td class="fw-bold">Third Installment</td>
+                            <td><input type="date" id="ThirdDate" name="ThirdDate" class="form-control" readonly /></td>
+                            <td><input type="number" name="ThirdInsta" class="form-control" value="${amount}" readonly /></td>
+                        </tr>`;
+                }
+
+                if (count >= 4) {
+                    const amount = installmentAmount;
+                    table += `
+                        <tr>
+                            <td class="fw-bold">Fourth Installment</td>
+                            <td><input type="date" id="FourthDate" name="FourthDate" class="form-control" readonly /></td>
+                            <td><input type="number" name="FourthInsta" class="form-control" value="${amount}" readonly /></td>
+                        </tr>`;
+                }
+
+                if (count >= 5) {
+                    const amount = installmentAmount;
+                    table += `
+                        <tr>
+                            <td class="fw-bold">Fifth Installment</td>
+                            <td><input type="date" id="FifthDate" name="FifthDate" class="form-control" readonly /></td>
+                            <td><input type="number" name="FifthInsta" class="form-control" value="${amount}" readonly /></td>
+                        </tr>`;
+                }
+
+                if (count === 6) {
+                    const amount = installmentAmount;
+                    table += `
+                        <tr>
+                            <td class="fw-bold">Sixth Installment</td>
+                            <td><input type="date" id="SixthDate" name="SixDate" class="form-control" readonly /></td>
+                            <td><input type="number" name="SixInsta" class="form-control" value="${amount}" readonly /></td>
+                        </tr>`;
+                }
+
+                table += `
+                        </tbody>
+                    </table>`;
+                installmentFields.innerHTML += table;
+
+                // Add event listener for first date field
+                document.getElementById("FirstDate").addEventListener("change", function () {
+                    const firstDateValue = this.value;
+                    if (firstDateValue) {
+                        let currentDate = new Date(firstDateValue);
+
+                        if (count >= 2) {
+                            currentDate.setMonth(currentDate.getMonth() + 1);
+                            const secondDateField = document.getElementById("SecondDate");
+                            if (secondDateField) {
+                                secondDateField.value = currentDate.toISOString().split("T")[0];
+                            }
+                        }
+
+                        if (count >= 3) {
+                            currentDate.setMonth(currentDate.getMonth() + 1);
+                            const thirdDateField = document.getElementById("ThirdDate");
+                            if (thirdDateField) {
+                                thirdDateField.value = currentDate.toISOString().split("T")[0];
+                            }
+                        }
+
+                        if (count >= 4) {
+                            currentDate.setMonth(currentDate.getMonth() + 1);
+                            const fourthDateField = document.getElementById("FourthDate");
+                            if (fourthDateField) {
+                                fourthDateField.value = currentDate.toISOString().split("T")[0];
+                            }
+                        }
+
+                        if (count >= 5) {
+                            currentDate.setMonth(currentDate.getMonth() + 1);
+                            const fifthDateField = document.getElementById("FifthDate");
+                            if (fifthDateField) {
+                                fifthDateField.value = currentDate.toISOString().split("T")[0];
+                            }
+                        }
+
+                        if (count === 6) {
+                            currentDate.setMonth(currentDate.getMonth() + 1);
+                            const sixthDateField = document.getElementById("SixthDate");
+                            if (sixthDateField) {
+                                sixthDateField.value = currentDate.toISOString().split("T")[0];
+                            }
+                        }
+                    }
+                });
+            } else {
+                installmentFields.innerHTML = "<p>No installments to display.</p>";
+            }
+        });
+
+
+
+    </script>
+}

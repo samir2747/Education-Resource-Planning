@@ -1,0 +1,119 @@
+﻿@model InstitudeManagementSystem.Models.Inquiry
+
+@{
+    ViewData["Title"] = "Edit Inquiry";
+}
+
+<!-- Page Header -->
+<div class="card-header bg-warning text-dark text-center">
+    <h1 class="display-4 text-dark" style="font-weight: 650;">Edit Inquiry</h1>
+    <p class="text-dark fw-bold">Modify the details of the inquiry and save your changes</p>
+</div>
+
+<div class="d-flex justify-content-center mt-5">
+    <div class="col-md-8">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger mb-4"></div>
+            <input type="hidden" asp-for="Id" />
+
+            <!-- PERSONAL INFORMATION SECTION -->
+            <h5 class="text-warning font-weight-bold mb-3 text-uppercase">Personal Information</h5>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="Name" class="form-label fw-bold">Name</label>
+                        <input asp-for="Name" class="form-control" placeholder="Enter name" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="Gender" class="form-label fw-bold">Gender</label>
+                        <select asp-for="Gender" class="form-select">
+                            <option value="">-- Select Gender --</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                        <span asp-validation-for="Gender" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="Contact" class="form-label fw-bold">Contact</label>
+                        <input asp-for="Contact" class="form-control" placeholder="Enter contact number" />
+                        <span asp-validation-for="Contact" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="Address" class="form-label fw-bold">Address</label>
+                        <input asp-for="Address" class="form-control" placeholder="Enter address" />
+                        <span asp-validation-for="Address" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="Dob" class="form-label fw-bold">Date of Birth</label>
+                        <input asp-for="Dob" type="date" class="form-control" />
+                        <span asp-validation-for="Dob" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="Qualification" class="form-label fw-bold">Qualification</label>
+                        <select asp-for="Qualification" class="form-control">
+                            <option value="">Select Qualification</option>
+                            <option value="HighSchool">High School</option>
+                            <option value="BSc">B.Sc. (Bachelor of Science)</option>
+                            <option value="BA">B.A. (Bachelor of Arts)</option>
+                            <option value="BCom">B.Com (Bachelor of Commerce)</option>
+                            <option value="BCA">BCA (Bachelor of Computer Applications)</option>
+                            <option value="MSc">M.Sc. (Master of Science)</option>
+                            <option value="MA">M.A. (Master of Arts)</option>
+                            <option value="MCom">M.Com (Master of Commerce)</option>
+                            <option value="MCA">MCA (Master of Computer Applications)</option>
+                            <option value="PhD">Ph.D. (Doctor of Philosophy)</option>
+                            <option value="Diploma">Diploma</option>
+                        </select>
+                        <span asp-validation-for="Qualification" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="Email" class="form-label fw-bold">Email</label>
+                        <input asp-for="Email" type="email" class="form-control" placeholder="Enter email" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- COURSE AND FEES SECTION -->
+            <h5 class="text-warning font-weight-bold mt-5 mb-3 text-uppercase">Course and Fees</h5>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="Course" class="form-label fw-bold">Course</label>
+                        <select asp-for="Course" class="form-select" asp-items="ViewBag.Courses">
+                            <option value="">--Select Course--</option>
+                        </select>
+                        <span asp-validation-for="Course" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="Fees" class="form-label fw-bold">Fees</label>
+                        <input asp-for="Fees" type="number" class="form-control" placeholder="Enter fees" />
+                        <span asp-validation-for="Fees" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="Remark" class="form-label fw-bold">Remark</label>
+                        <input asp-for="Remark" class="form-control" placeholder="Enter remarks" />
+                        <span asp-validation-for="Remark" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="InquiryTakenBy" class="form-label fw-bold">Inquiry Taken By</label>
+                        <input asp-for="InquiryTakenBy" class="form-control" placeholder="Enter the name of the person who took the inquiry" />
+                        <span asp-validation-for="InquiryTakenBy" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BUTTON SECTION -->
+            <div class="form-group text-center mt-4">
+                <button type="submit" class="btn btn-success">Save</button>
+                <a asp-action="Table" class="btn btn-secondary">Back</a>
+            </div>
+        </form>
+    </div>
+</div>

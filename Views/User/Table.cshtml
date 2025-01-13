@@ -1,0 +1,180 @@
+﻿@model IEnumerable<InstitudeManagementSystem.Models.Inquiry>
+
+@{
+    ViewData["Title"] = "Inquiry Table";
+}
+
+<h1 class="text-center mb-4 mt-4 text-uppercase">Inquiry Table</h1>
+
+<!-- Total Inquiry Count and Search Form -->
+<div class="container-fluid">
+    <div class="d-flex justify-content-between mb-2 gap-2 my-3 flex-column flex-sm-row">
+        <div class="d-flex gap-2">
+            <h4>Total Inquiries: <span class="badge bg-success">@Model?.Count()</span></h4>
+        </div>
+
+        <!-- Search Form -->
+        <form method="get" asp-controller="User" asp-action="Table" class="d-flex flex-column flex-sm-row align-items-center gap-2">
+            <input type="text" name="searchString" value="@ViewData["CurrentFilter"]" placeholder="Search by student name, course, or gender" class="form-control w-100 w-sm-auto" />
+            <button type="submit" class="btn btn-primary w-25 w-sm-auto">Search</button>
+        </form>
+    </div>
+</div>
+
+<!-- Action Buttons (hidden by default) -->
+<div class="container-fluid mb-3 d-flex justify-content-between" id="action-buttons">
+    <div>
+        <a asp-action="Insert" class="btn btn-success">
+            <i class="fas fa-plus-circle"></i> Add Inquiry
+        </a>
+        <a asp-action="Dashboard" class="btn btn-warning">
+            <i class="fas fa-arrow-left"></i> Go Back
+        </a>
+    </div>
+    <div class=" gap-2">
+        <a id="editBtn" class="btn btn-primary" href="#">Edit</a>
+        <a id="admissionBtn" class="btn btn-success" href="#">Admission</a>
+        <a id="deleteBtn" class="btn btn-danger" href="#">Delete</a>
+    </div>
+</div>
+
+<!-- Inquiry Records Section -->
+<div class="container-fluid my-3">
+    <div class="card shadow-sm border-0">
+
+        <!-- Inquiry Table with Scroll -->
+        <div class="table-responsive" style="max-height: 350px; overflow-y: auto;">
+            <table class="table table-bordered align-middle mb-0">
+                <thead class="bg-dark text-white text-center sticky-header">
+                    <tr>
+                        <th>@Html.DisplayNameFor(model => model.Id)</th>
+                        <th>@Html.DisplayNameFor(model => model.Name)</th>
+                        <th>@Html.DisplayNameFor(model => model.Gender)</th>
+                        <th>@Html.DisplayNameFor(model => model.Contact)</th>
+                        <th>@Html.DisplayNameFor(model => model.Address)</th>
+                        
+                        <th>@Html.DisplayNameFor(model => model.Dob)</th>
+                        <th>@Html.DisplayNameFor(model => model.Qualification)</th>
+                        <th>@Html.DisplayNameFor(model => model.Email)</th>
+                        <th>@Html.DisplayNameFor(model => model.Course)</th>
+                        <th>@Html.DisplayNameFor(model => model.Fees)</th>
+                        <th>@Html.DisplayNameFor(model => model.Remark)</th>
+                        <th>@Html.DisplayNameFor(model => model.InquiryTakenBy)</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr class="inquiry-row" data-id="@item.Id">
+
+                                <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Gender)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Contact)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Address)</td>
+                                
+                                <td>@Html.DisplayFor(modelItem => item.Dob)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Qualification)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Course)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Fees)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Remark)</td>
+                                <td>@Html.DisplayFor(modelItem => item.InquiryTakenBy)</td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="12" class="text-center text-danger fw-bold">No Inquiries Found</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for "Select Student" message -->
+<div class="modal fade" id="selectStudentModal" tabindex="-1" aria-labelledby="selectStudentModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-danger fw-bold" id="selectStudentModalLabel">Validation Error!!</h5>
+                <button type="button" class="btn-close bg-success" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body fw-bold">
+                Please select a student row before performing any action.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript to handle row click and show buttons -->
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const rows = document.querySelectorAll('.inquiry-row');
+        const actionButtonsDiv = document.getElementById('action-buttons');
+        const editBtn = document.getElementById('editBtn');
+        const admissionBtn = document.getElementById('admissionBtn');
+        const deleteBtn = document.getElementById('deleteBtn');
+        const selectStudentModal = new bootstrap.Modal(document.getElementById('selectStudentModal'));
+
+        rows.forEach(function (row) {
+            row.addEventListener('click', function () {
+                // Toggle the "selected" class to highlight the row
+                row.classList.toggle('selected');
+
+                // Show or hide the action buttons based on the selection
+                const selectedRows = document.querySelectorAll('.inquiry-row.selected');
+                if (selectedRows.length > 0) {
+                    actionButtonsDiv.style.display = 'flex';
+                } else {
+                    actionButtonsDiv.style.display = 'none';
+                }
+
+                // Set the href for the buttons to point to the right actions
+                if (selectedRows.length === 1) { // If only one row is selected
+                    const id = row.getAttribute('data-id');
+                    editBtn.href = '@Url.Action("Edit", "User", new { id = "__ID__" })'.replace('__ID__', id);
+                    admissionBtn.href = '@Url.Action("Addd", "Admin", new { id = "__ID__" })'.replace('__ID__', id);
+                    deleteBtn.href = '@Url.Action("Delete", "User", new { id = "__ID__" })'.replace('__ID__', id);
+                }
+            });
+        });
+
+        // Check if no row is selected before triggering action
+        const handleActionClick = (actionType) => {
+            const selectedRows = document.querySelectorAll('.inquiry-row.selected');
+            if (selectedRows.length === 0) {
+                selectStudentModal.show();
+                return false; // Prevent action from executing
+            }
+        };
+
+        // Add event listeners to buttons to show the modal if no row is selected
+        editBtn.addEventListener('click', (e) => handleActionClick('edit'));
+        admissionBtn.addEventListener('click', (e) => handleActionClick('admission'));
+        deleteBtn.addEventListener('click', (e) => handleActionClick('delete'));
+    });
+</script>
+
+<style>
+    .selected {
+        background-color: #f0f0f0; /* Light grey or any color of your choice */
+    }
+
+    /* Sticky header style */
+    .sticky-header th {
+        position: sticky;
+        top: 0;
+        background-color: #343a40; /* Same as the header background */
+        z-index: 1; /* Ensure it stays above the table body */
+    }
+</style>

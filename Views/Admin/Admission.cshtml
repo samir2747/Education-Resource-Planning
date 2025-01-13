@@ -1,0 +1,146 @@
+﻿@model IEnumerable<InstitudeManagementSystem.Models.Addmission>
+
+@{
+    ViewData["Title"] = "Admission";
+}
+
+<h1 class="text-center mb-5 mt-4 text-uppercase">Admission</h1>
+
+<!-- Display Total Admissions -->
+<div class="container-fluid">
+    <h4>Total Admissions: <span class="badge bg-success">@Model?.Count()</span></h4>
+    <div class="d-flex justify-content-between mb-2 gap-2 my-3 flex-column flex-sm-row">
+        <div class="d-flex gap-2">
+            <form method="get" class="d-flex flex-column flex-sm-row align-items-center gap-2">
+                <label for="searchString" class="form-label fw-bold mb-1 mb-sm-0">Search:</label>
+                <input type="text" id="searchString" name="searchString" value="@ViewData["SearchString"]" class="form-control w-100 w-sm-auto" placeholder="Search by student name, course, or gender" />
+
+                <button type="submit" class="btn btn-primary w-25 w-sm-auto">Search</button>
+            </form>
+
+        </div>
+
+        <form method="get" class="d-flex flex-column flex-sm-row align-items-center gap-2">
+            <label for="startDate" class="form-label fw-bold mb-1 mb-sm-0">From:</label>
+            <input type="date" id="startDate" name="startDate" value="@ViewData["startDate"]" class="form-control w-100 w-sm-auto" />
+
+            <label for="endDate" class="form-label fw-bold mb-1 mb-sm-0">To:</label>
+            <input type="date" id="endDate" name="endDate" value="@ViewData["endDate"]" class="form-control w-100 w-sm-auto" />
+
+            <button type="submit" class="btn btn-primary w-100 w-sm-auto">Filter</button>
+        </form>
+    </div>
+</div>
+
+<!-- Student Records Section -->
+<div class="container-fluid my-3">
+    <div class="card shadow-sm border-0">
+        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+            <h4 class="mb-0 text-uppercase">Student Records</h4>
+            <div class="d-flex gap-2">
+                <a asp-action="Add" asp-controller="Admin" class="btn btn-success">
+                    <i class="fas fa-plus-circle"></i> Add New Student
+                </a>
+                <a asp-action="Dashboard" asp-controller="User" class="btn btn-warning">
+                    <i class="fas fa-arrow-left"></i> Go Back
+                </a>
+            </div>
+        </div>
+
+
+
+        <div class="table-responsive" style="max-height: 400px; overflow-y: auto;">
+            <table class="table table-bordered table-hover align-middle mb-0">
+                <thead class="bg-light text-dark text-center">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Gender</th>
+                        <th>DOB</th>
+                        <th>Contact</th>
+                        <th>Email</th>
+                        <th>Parent Name</th>
+                        <th>Parent Contact</th>
+                        <th>Address</th>
+                        <th>City</th>
+                        <th>Qualification</th>
+                        <th>Marks</th>
+                        <th>Course</th>
+                        <th>Fees</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Any())
+                    {
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.Id)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Gender)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Dob)</td>
+                                <td>@Html.DisplayFor(modelItem => item.ContactNo)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                                <td>@Html.DisplayFor(modelItem => item.ParentName)</td>
+                                <td>@Html.DisplayFor(modelItem => item.ParentContactNo)</td>
+                                <td>
+                                    <strong>Permanent:</strong> @Html.DisplayFor(modelItem => item.PermanentAddress) <br />
+                                    <strong>Current:</strong> @Html.DisplayFor(modelItem => item.CurrentAddress)
+                                </td>
+                                <td>@Html.DisplayFor(modelItem => item.City)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Qualification)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Marks)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Course)</td>
+                                <td>
+                                    <strong>Registration:</strong> @Html.DisplayFor(modelItem => item.RegistrationFees) <br />
+                                    <strong>Course:</strong> @Html.DisplayFor(modelItem => item.CourseFees)
+                                </td>
+                                <td class="text-center">
+                                    <div class="d-flex justify-content-center gap-2">
+                                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">
+                                            Edit
+                                        </a>
+                                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info">
+                                            Details
+                                        </a>
+                                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">
+                                            Delete
+                                        </a>
+                                    </div>
+                                </td>
+
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr>
+                            <td colspan="14" class="text-center text-danger">No Records Found</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // Get the current date in yyyy-mm-dd format
+        var today = new Date().toISOString().split('T')[0];
+
+        // Get the input elements
+        var startDateInput = document.getElementById('startDate');
+        var endDateInput = document.getElementById('endDate');
+
+        // Set the default value for startDate and endDate to today's date if not already set
+        if (!startDateInput.value) {
+            startDateInput.value = today;
+        }
+        if (!endDateInput.value) {
+            endDateInput.value = today;
+        }
+    });
+</script>

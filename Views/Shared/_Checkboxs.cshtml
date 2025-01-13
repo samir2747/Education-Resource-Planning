@@ -1,0 +1,40 @@
+﻿@if (Model == null)
+{
+    <p class="text-danger">No course details found.</p>
+}
+else
+{
+    <h5>Course Details:</h5>
+    <div>
+        <strong>Frontend:</strong>
+        @foreach (var item in Model.FrontEnd)
+        {
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="frontend_@item" value="@item">
+                <label class="form-check-label" for="frontend_@item">@item</label>
+            </div>
+        }
+    </div>
+
+    <div>
+        <strong>Backend:</strong>
+        @foreach (var item in Model.BackEnd)
+        {
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="backend_@item" value="@item">
+                <label class="form-check-label" for="backend_@item">@item</label>
+            </div>
+        }
+    </div>
+
+    <div>
+        <strong>Database:</strong>
+        @foreach (var item in Model.DataBaseLanguage)
+        {
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="database_@item" value="@item">
+                <label class="form-check-label" for="database_@item">@item</label>
+            </div>
+        }
+    </div>
+}

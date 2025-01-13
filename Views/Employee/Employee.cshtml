@@ -1,0 +1,81 @@
+﻿@model IEnumerable<InstitudeManagementSystem.Models.Employee>
+
+@{
+    ViewData["Title"] = "Employee";
+}
+
+<h1 class="text-center mb-4 mt-4 text-uppercase">Employee</h1>
+
+<!-- Employee Table Section -->
+<div class="container-fluid my-3">
+    <h4>Total Employee: @Model?.Count()</h4>
+    <div class="card shadow-sm border-0">
+        <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+            <h4 class="mb-0 text-uppercase">Employee Records</h4>
+            <!-- Create New Employee Button in the Card Header -->
+            <a asp-action="AddEmp" asp-controller="Employee" class="btn btn-primary">
+                <i class="fas fa-plus-circle"></i> Add New Employee
+            </a>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover align-middle mb-0">
+                <thead class="bg-light text-dark text-center">
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Gender</th>
+                        <th>Email</th>
+                        <th>Contact</th>
+                        <th>Address</th>
+                        <th>Qualification</th>
+                        <th>Designation</th>
+                        <th>Date of Joining</th>
+                        <th>Salary</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.Eid)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Gender)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                            <td>@Html.DisplayFor(modelItem => item.ContactNo)</td>
+                            <td>
+                                <strong>Current:</strong> @Html.DisplayFor(modelItem => item.CurrentAddress) <br />
+                                <strong>Permanent:</strong> @Html.DisplayFor(modelItem => item.PermanentAddress)
+                            </td>
+                            <td>@Html.DisplayFor(modelItem => item.Qualification)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Designation)</td>
+                            <td>@Html.DisplayFor(modelItem => item.DateOfJoining)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Salary)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Status)</td>
+                            <td class="text-center">
+                                <div class="d-flex justify-content-center gap-2">
+                                    <a asp-action="Edit" asp-route-id="@item.Eid" class="btn btn-sm btn-warning">
+                                        Edit
+                                    </a>
+                                    <a asp-action="Details" asp-route-id="@item.Eid" class="btn btn-sm btn-info">
+                                        Details
+                                    </a>
+                                    <a asp-action="Delete" asp-route-id="@item.Eid" class="btn btn-sm btn-danger">
+                                        Delete
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                    @if (!Model.Any())
+                    {
+                        <tr>
+                            <td colspan="11" class="text-center text-danger">No Employee Records Found</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

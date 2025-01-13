@@ -1,0 +1,116 @@
+﻿@model InstitudeManagementSystem.Models.Employee
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="card-header bg-success text-white text-center">
+    <h1 class="display-4 text-white" style="font-weight: 650;">DETAILS</h1>
+    <p class="text-white fw-bold">View and Confirm Your Information</p>
+</div>
+
+<div class="d-flex justify-content-center mt-4">
+    <div class="col-md-8">
+        <h5 class="text-success font-weight-bold mb-3 text-uppercase">Employee Information</h5>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label fw-bold">Name</label>
+                    <p class="form-control-static">@Html.DisplayFor(model => model.Name)</p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label fw-bold">Gender</label>
+                    <p class="form-control-static">@Html.DisplayFor(model => model.Gender)</p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label fw-bold">Email</label>
+                    <p class="form-control-static">@Html.DisplayFor(model => model.Email)</p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label fw-bold">Contact No</label>
+                    <p class="form-control-static">@Html.DisplayFor(model => model.ContactNo)</p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label fw-bold">Alternate Contact No</label>
+                    <p class="form-control-static">@Html.DisplayFor(model => model.AlternetContactNo)</p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label fw-bold">Date of Birth</label>
+                    <p class="form-control-static">@Html.DisplayFor(model => model.Dob)</p>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label fw-bold">Current Address</label>
+                    <p class="form-control-static">@Html.DisplayFor(model => model.CurrentAddress)</p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label fw-bold">Permanent Address</label>
+                    <p class="form-control-static">@Html.DisplayFor(model => model.PermanentAddress)</p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label fw-bold">Qualification</label>
+                    <p class="form-control-static">@Html.DisplayFor(model => model.Qualification)</p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label fw-bold">Marital Status</label>
+                    <p class="form-control-static">@Html.DisplayFor(model => model.MaritalStatus)</p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label fw-bold">Department</label>
+                    <p class="form-control-static">@Html.DisplayFor(model => model.Department)</p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label fw-bold">Specialized Subject</label>
+                    <p class="form-control-static">@Html.DisplayFor(model => model.SpecializedSubject)</p>
+                </div>
+            </div>
+        </div>
+
+        <h5 class="text-success font-weight-bold mt-5 mb-3 text-uppercase">Professional Information</h5>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label fw-bold">Designation</label>
+                    <p class="form-control-static">@Html.DisplayFor(model => model.Designation)</p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label fw-bold">Date of Joining</label>
+                    <p class="form-control-static">@Html.DisplayFor(model => model.DateOfJoining)</p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label fw-bold">Salary</label>
+                    <p class="form-control-static">@Html.DisplayFor(model => model.Salary)</p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label fw-bold">Id Proof Type</label>
+                    <p class="form-control-static">@Html.DisplayFor(model => model.IdproofType)</p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label fw-bold">Id Proof Number</label>
+                    <p class="form-control-static">@Html.DisplayFor(model => model.IdproofNumber)</p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label fw-bold">Status</label>
+                    <p class="form-control-static">@Html.DisplayFor(model => model.Status)</p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label fw-bold">Previous Experience</label>
+                    <p class="form-control-static">@Html.DisplayFor(model => model.PreviousExperience)</p>
+                </div>
+                <div class="form-group">
+                    <label class="control-label fw-bold">Experience</label>
+                    <p class="form-control-static">@Html.DisplayFor(model => model.Experience)</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group text-center mt-4">
+            <a asp-action="Edit" asp-route-id="@Model?.Eid" class="btn btn-success">Edit</a>
+            <a asp-action="Employee" class="btn btn-secondary">Back</a>
+        </div>
+    </div>
+</div>

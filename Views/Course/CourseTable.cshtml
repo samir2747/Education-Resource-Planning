@@ -1,0 +1,167 @@
+﻿@model IEnumerable<InstitudeManagementSystem.Models.Course>
+
+@{
+    ViewData["Title"] = "Course Table";
+}
+
+<h1 class="text-center mb-4 mt-4 text-uppercase">Course Table</h1>
+
+<!-- Course Table Section -->
+<div class="container-fluid my-3">
+    <h4>Total Course: @Model?.Count()</h4>
+
+    <!-- Action Buttons (Initially Hidden) -->
+    <div id="actionButtons" class="mb-3 d-flex justify-content-between">
+        <div class=" gap-2">
+            <a asp-action="AddCourse" asp-controller="Course" class="btn btn-primary">
+                Add Course
+            </a>
+            <a asp-action="Dashboard" asp-controller="User" class="btn btn-secondary">
+                Back
+            </a>
+        </div>
+
+        <div class=" gap-2">
+            <!-- Edit Button -->
+            <a id="editBtn" class="btn btn-sm btn-warning" href="#">Edit</a>
+
+            <!-- Details Button -->
+            <a id="detailsBtn" class="btn btn-sm btn-info" href="#">Details</a>
+
+            <!-- Delete Button -->
+            <a id="deleteBtn" class="btn btn-sm btn-danger" href="#">Delete</a>
+
+            <!-- WhatsApp Button -->
+            <a id="whatsappBtn" class="btn btn-sm btn-success" href="#" target="_blank">WhatsApp</a>
+        </div>
+    </div>
+
+    <div class="table-responsive">
+        <table class="table table-bordered align-middle mb-0" id="courseTable">
+            <thead class="bg-dark text-white text-center">
+                <tr>
+                    <th>Name</th>
+                    <th>Front-End</th>
+                    <th>Back-End</th>
+                    <th>Database Language</th>
+                    <th>Duration</th>
+                    <th>Course Fees</th>
+                    <th>Course Format</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="courseRow" data-id="@item.Cid" data-name="@item.Name" data-front-end="@item.FrontEnd" data-back-end="@item.BackEnd" data-database="@item.DataBaseLanguage" data-duration="@item.Duration" data-fees="@item.CourseFees" data-format="@item.CourseFormat" data-description="@item.Description">
+                        <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                        <td>@Html.DisplayFor(modelItem => item.FrontEnd)</td>
+                        <td>@Html.DisplayFor(modelItem => item.BackEnd)</td>
+                        <td>@Html.DisplayFor(modelItem => item.DataBaseLanguage)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Duration)</td>
+                        <td>@Html.DisplayFor(modelItem => item.CourseFees)</td>
+                        <td>@Html.DisplayFor(modelItem => item.CourseFormat)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Description)</td>
+                    </tr>
+                }
+                @if (!Model.Any())
+                {
+                    <tr>
+                        <td colspan="8" class="text-center text-danger">No Course Records Found</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Modal for row selection -->
+<div class="modal fade" id="selectCourseModal" tabindex="-1" aria-labelledby="selectCourseModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-danger fw-bold" id="selectCourseModalLabel">Validation Error!!</h5>
+                <button type="button" class="btn-close bg-success" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body fw-bold">
+                <p>Please Select a Student from the table before proceeding with this action.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript/jQuery Code -->
+@section Scripts {
+   
+
+    <script>
+        $(document).ready(function () {
+            // When a row is clicked
+            $('#courseTable tbody').on('click', 'tr.courseRow', function () {
+                // Remove the 'selected' class from all rows
+                $('#courseTable tbody tr').removeClass('selected');
+
+                // Add the 'selected' class to the clicked row
+                $(this).addClass('selected');
+
+                var courseId = $(this).data('id');
+                var courseName = $(this).data('name');
+
+                // Set the action buttons with corresponding data
+                $('#editBtn').attr('href', '/Course/Edit/' + courseId);
+                $('#detailsBtn').attr('href', '/Course/Details/' + courseId);
+                $('#deleteBtn').attr('href', '/Course/Delete/' + courseId);
+
+                // Set WhatsApp button link (example phone number and message)
+                var phoneNumber = '1234567890'; // Replace with actual phone number (without +)
+                var message = 'Hello, I am interested in the course: ' + courseName;
+                var whatsappLink = 'https://wa.me/' + phoneNumber + '?text=' + encodeURIComponent(message);
+
+                // Set the WhatsApp link dynamically
+                $('#whatsappBtn').attr('href', whatsappLink);
+
+                // Show the action buttons container
+                $('#actionButtons').show();
+            });
+
+            // Check if a row is selected before proceeding with any action
+            $('#editBtn').click(function (e) {
+                if ($('#courseTable tbody tr.selected').length === 0) {
+                    e.preventDefault();
+                    $('#selectCourseModal').modal('show');
+                }
+            });
+
+            $('#detailsBtn').click(function (e) {
+                if ($('#courseTable tbody tr.selected').length === 0) {
+                    e.preventDefault();
+                    $('#selectCourseModal').modal('show');
+                }
+            });
+
+            $('#deleteBtn').click(function (e) {
+                if ($('#courseTable tbody tr.selected').length === 0) {
+                    e.preventDefault();
+                    $('#selectCourseModal').modal('show');
+                }
+            });
+
+            $('#whatsappBtn').click(function (e) {
+                if ($('#courseTable tbody tr.selected').length === 0) {
+                    e.preventDefault();
+                    $('#selectCourseModal').modal('show');
+                }
+            });
+        });
+    </script>
+}
+
+<!-- CSS to Highlight the Selected Row -->
+<style>
+    .selected {
+        background-color: #f0f0f0; /* Light grey or any color of your choice */
+    }
+</style>

@@ -1,0 +1,63 @@
+﻿@model InstitudeManagementSystem.Models.Registration
+
+@{
+    ViewData["Title"] = "Login";
+}
+
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-lg border-0">
+                <div class=" text-center mt-3">
+                    <h2 class="mb-0">LOGIN</h2>
+                </div>
+                <div class="card-body">
+                    <form asp-action="Login">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                        @{
+                            if (ViewBag.Message != null)
+                            {
+                                <p class="text-danger text-center font-weight-bold">@ViewBag.Message</p>
+                            }
+                            if (TempData["Success"] != null)
+                            {
+                                <p class="text-success text-center font-weight-bold">@TempData["Success"]</p>
+                            }
+                        }
+
+                        <div class="form-group mb-3">
+                            <label asp-for="Email" class="form-label"></label>
+                            <input asp-for="Email" class="form-control" placeholder="Enter Email" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="Password" class="form-label"></label>
+                            <input asp-for="Password" type="password" class="form-control" placeholder="Enter Password" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                        </div>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-block">Login</button>
+                            
+                        </div>
+                    </form>
+                </div>
+                <div class="text-center">
+                    <p class="mb-3">
+                        <a asp-controller="Home" asp-action="Register" class="text-decoration-none fw-bold" >
+                            Not Registered? <span style="color: crimson;">Click Here</span>
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

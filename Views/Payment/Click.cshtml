@@ -1,0 +1,130 @@
+﻿@{
+    ViewData["Title"] = "Click";
+}
+
+<div class="card-header bg-success text-white text-center">
+    <h1 class="display-4 text-white font-weight-bold">Payment Portal</h1>
+    <p class="text-white">Complete Payment for Admission Fees</p>
+</div>
+
+<div class="container mt-5">
+
+    <div class="d-flex justify-content-end mt-3">
+        <a asp-action="Dashboard" asp-controller="User" class="btn btn-secondary">Back</a>
+    </div>
+
+    <!-- Dropdown for student selection -->
+    <label for="student" class="form-label fw-bold">Student Name:</label>
+    <div class="dropdown-container">
+        <input list="students" id="student" name="student" placeholder="Search By Name, Mobile Number, Parent Name" class="form-control" autocomplete="off">
+        <datalist id="students">
+            @foreach (var admission in ViewBag.Admissions)
+            {
+                <option value="@admission.Text" data-id="@admission.Value"></option>
+            }
+        </datalist>
+    </div>
+
+    <!-- Centered Make Payment Button -->
+    <div class="button-container text-center mt-3">
+        <a href="#" id="make-payment" class="btn btn-success">
+            <i class="fas fa-credit-card"></i> Make Payment
+        </a>
+    </div>
+</div>
+
+<!-- Bootstrap Modal for validation message -->
+<div class="modal fade" id="validationModal" tabindex="-1" aria-labelledby="validationModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-danger fw-bold" id="validationModalLabel">Validation Error!!</h5>
+                <button type="button" class="btn-close btn-success" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body fw-bold">
+                Please select a student before making the payment.
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Handle student selection and enable the Make Payment button
+    document.getElementById('student').addEventListener('input', function () {
+        var selectedStudent = this.value;
+        var option = Array.from(document.querySelectorAll('#students option'))
+            .find(opt => opt.value === selectedStudent);
+
+        var makePaymentButton = document.getElementById('make-payment');
+
+        // If a valid student is selected, enable the button and update the href
+        if (option) {
+            var studentId = option.getAttribute('data-id');
+            makePaymentButton.style.display = 'inline-block';
+            makePaymentButton.href = `/Payment/Make?id=${studentId}`;
+        } else {
+            // Hide the Make Payment button if no valid student is selected
+            makePaymentButton.style.display = 'none';
+        }
+    });
+
+    // Check for valid selection before allowing payment
+    document.getElementById('make-payment').addEventListener('click', function (event) {
+        var selectedStudent = document.getElementById('student').value;
+        var option = Array.from(document.querySelectorAll('#students option'))
+            .find(opt => opt.value === selectedStudent);
+
+        // If no student is selected, show the Bootstrap modal
+        if (!option) {
+            event.preventDefault(); // Prevent the default action (redirect)
+            var modal = new bootstrap.Modal(document.getElementById('validationModal'));
+            modal.show(); // Show the modal
+        }
+    });
+</script>
+
+<style>
+    /* Hover effect for datalist options */
+    #students option:hover {
+        background-color: #e0f7fa;
+        color: #00796b;
+    }
+
+    /* Custom style for the input field on focus and hover */
+    .dropdown-container input:focus {
+        border-color: #00796b; /* Green color for focus */
+        box-shadow: 0 0 5px rgba(0, 150, 136, 0.5); /* Light green focus shadow */
+    }
+
+    .dropdown-container input:hover {
+        border-color: #004d40; /* Darker green for hover */
+        box-shadow: 0 0 5px rgba(0, 150, 136, 0.7); /* Stronger shadow on hover */
+    }
+
+    /* Centering the button */
+    .button-container {
+        display: flex;
+        justify-content: center; /* Horizontally center the button */
+        align-items: center; /* Vertically center the button */
+    }
+
+    /* Success button with green theme */
+    .btn-success {
+        background-color: #28a745; /* Green background for success */
+        border-color: #218838; /* Darker green border */
+        padding: 8px 12px; /* Slightly reduced padding for concise size */
+        font-size: 16px; /* Adjust font size for balance */
+        border-radius: 8px;
+        white-space: nowrap; /* Prevent button from wrapping text */
+    }
+
+        .btn-success:hover {
+            background-color: #218838; /* Darker green on hover */
+            border-color: #1e7e34; /* Darker green border */
+            box-shadow: 0 0 5px rgba(0, 150, 136, 0.5); /* Subtle shadow for hover effect */
+        }
+</style>
+

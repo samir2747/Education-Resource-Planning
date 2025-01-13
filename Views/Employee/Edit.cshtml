@@ -1,0 +1,162 @@
+﻿@model InstitudeManagementSystem.Models.Employee
+
+@{
+    ViewData["Title"] = "Edit Employee";
+}
+
+<!-- Page Header -->
+<div class="card-header bg-warning text-dark text-center">
+    <h1 class="display-4 text-dark" style="font-weight: 650;">Edit Employee</h1>
+    <p class="text-dark fw-bold">Modify the details of the employee and save your changes</p>
+</div>
+
+<div class="d-flex justify-content-center mt-5">
+    <div class="col-md-8">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="alert alert-danger mb-4"></div>
+            <input type="hidden" asp-for="Eid" />
+
+            <!-- PERSONAL INFORMATION SECTION -->
+            <h5 class="text-warning font-weight-bold mb-3 text-uppercase">Personal Information</h5>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="Name" class="form-label fw-bold">Name</label>
+                        <input asp-for="Name" class="form-control" placeholder="Enter Name" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="Gender" class="form-label fw-bold">Gender</label>
+                        <input asp-for="Gender" class="form-control" placeholder="Enter Gender" />
+                        <span asp-validation-for="Gender" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="Email" class="form-label fw-bold">Email</label>
+                        <input asp-for="Email" class="form-control" placeholder="Enter Email" />
+                        <span asp-validation-for="Email" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="ContactNo" class="form-label fw-bold">Contact Number</label>
+                        <input asp-for="ContactNo" class="form-control" placeholder="Enter Contact Number" />
+                        <span asp-validation-for="ContactNo" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="AlternetContactNo" class="form-label fw-bold">Alternate Contact No</label>
+                        <input asp-for="AlternetContactNo" class="form-control" placeholder="Enter Alternate Contact Number" />
+                        <span asp-validation-for="AlternetContactNo" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="Dob" class="form-label fw-bold">Date of Birth</label>
+                        <input asp-for="Dob" type="date" class="form-control" />
+                        <span asp-validation-for="Dob" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="CurrentAddress" class="form-label fw-bold">Current Address</label>
+                        <input asp-for="CurrentAddress" class="form-control" placeholder="Enter Current Address" />
+                        <span asp-validation-for="CurrentAddress" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="PermanentAddress" class="form-label fw-bold">Permanent Address</label>
+                        <input asp-for="PermanentAddress" class="form-control" placeholder="Enter Permanent Address" />
+                        <span asp-validation-for="PermanentAddress" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- JOB INFORMATION SECTION -->
+            <h5 class="text-warning font-weight-bold mt-5 mb-3 text-uppercase">Job Information</h5>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="Qualification" class="form-label fw-bold">Qualification</label>
+                        <input asp-for="Qualification" class="form-control" placeholder="Enter Qualification" />
+                        <span asp-validation-for="Qualification" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="MaritalStatus" class="form-label fw-bold">Marital Status</label>
+                        <input asp-for="MaritalStatus" class="form-control" placeholder="Enter Marital Status" />
+                        <span asp-validation-for="MaritalStatus" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="Department" class="form-label fw-bold">Department</label>
+                        <input asp-for="Department" class="form-control" placeholder="Enter Department" />
+                        <span asp-validation-for="Department" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="SpecializedSubject" class="form-label fw-bold">Specialized Subject</label>
+                        <input asp-for="SpecializedSubject" class="form-control" placeholder="Enter Specialized Subject" />
+                        <span asp-validation-for="SpecializedSubject" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="Designation" class="form-label fw-bold">Designation</label>
+                        <input asp-for="Designation" class="form-control" placeholder="Enter Designation" />
+                        <span asp-validation-for="Designation" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="DateOfJoining" class="form-label fw-bold">Date of Joining</label>
+                        <input asp-for="DateOfJoining" type="date" class="form-control" />
+                        <span asp-validation-for="DateOfJoining" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- SALARY & ID PROOF SECTION -->
+            <h5 class="text-warning font-weight-bold mt-5 mb-3 text-uppercase">Salary & ID Proof</h5>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="Salary" class="form-label fw-bold">Salary</label>
+                        <input asp-for="Salary" type="number" class="form-control" placeholder="Enter Salary" />
+                        <span asp-validation-for="Salary" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="IdproofType" class="form-label fw-bold">ID Proof Type</label>
+                        <input asp-for="IdproofType" class="form-control" placeholder="Enter ID Proof Type" />
+                        <span asp-validation-for="IdproofType" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="IdproofNumber" class="form-label fw-bold">ID Proof Number</label>
+                        <input asp-for="IdproofNumber" class="form-control" placeholder="Enter ID Proof Number" />
+                        <span asp-validation-for="IdproofNumber" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STATUS & EXPERIENCE SECTION -->
+            <h5 class="text-warning font-weight-bold mt-5 mb-3 text-uppercase">Status & Experience</h5>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="Status" class="form-label fw-bold">Status</label>
+                        <input asp-for="Status" class="form-control" placeholder="Enter Status" />
+                        <span asp-validation-for="Status" class="text-danger"></span>
+                    </div>
+                    <div class="form-group mb-3">
+                        <label asp-for="PreviousExperience" class="form-label fw-bold">Previous Experience</label>
+                        <input asp-for="PreviousExperience" class="form-control" placeholder="Enter Previous Experience" />
+                        <span asp-validation-for="PreviousExperience" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group mb-3">
+                        <label asp-for="Experience" class="form-label fw-bold">Experience</label>
+                        <input asp-for="Experience" class="form-control" placeholder="Enter Experience" />
+                        <span asp-validation-for="Experience" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BUTTON SECTION -->
+            <div class="form-group text-center mt-4">
+                <button type="submit" class="btn btn-success">Save</button>
+                <a asp-action="Employee" class="btn btn-secondary">Back</a>
+            </div>
+        </form>
+    </div>
+</div>
