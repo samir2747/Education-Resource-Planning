@@ -1,6 +1,6 @@
-# Institute-Management-System
+# Education Resource Planning
 Overview:
-    The Institute Management System helps educational institutes manage daily tasks like handling inquiries, admissions, student and course records, admission fees, and employee details. It uses modern technology to make the process accurate, efficient, and easy for staff to use.
+    The Education Resource Planning helps educational institutes manage daily tasks like handling inquiries, admissions, student and course records, admission fees, and employee details. It uses modern technology to make the process accurate, efficient, and easy for staff to use.
 
 1) Technologies Used: 
     •	Languages: C#, JavaScript, HTML, CSS, Bootstrap 5
